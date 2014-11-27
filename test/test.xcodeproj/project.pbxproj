@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E0FE8AE1A1D9BCF0071E015 /* OneFingerLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0FE8AD1A1D9BCF0071E015 /* OneFingerLayoutViewController.m */; };
-		5E0FE8B21A1D9CB60071E015 /* BaseFlowTextInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0FE8B11A1D9CB60071E015 /* BaseFlowTextInputView.m */; };
+		5E0FE8B21A1D9CB60071E015 /* BaseFlowTextBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0FE8B11A1D9CB60071E015 /* BaseFlowTextBubbleView.m */; };
 		5E0FE8B51A1D9F0B0071E015 /* CLTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0FE8B41A1D9F0B0071E015 /* CLTextLabel.m */; };
 		5E0FE8B81A1D9F460071E015 /* CLCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0FE8B71A1D9F460071E015 /* CLCircleView.m */; };
 		5E1A5E271A130C3C006A79C8 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1A5E261A130C3C006A79C8 /* HMSegmentedControl.m */; };
@@ -21,8 +21,6 @@
 		5E2D59A219C0298A00ECFD49 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D59A119C0298A00ECFD49 /* ChatViewController.m */; };
 		5E2D59AE19C0372A00ECFD49 /* ChatInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D59AD19C0372A00ECFD49 /* ChatInputView.m */; };
 		5E2D59B119C0376500ECFD49 /* ChatTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D59B019C0376500ECFD49 /* ChatTextView.m */; };
-		5E2D59B619C03D3C00ECFD49 /* HPGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D59B319C03D3C00ECFD49 /* HPGrowingTextView.m */; };
-		5E2D59B719C03D3C00ECFD49 /* HPTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D59B519C03D3C00ECFD49 /* HPTextViewInternal.m */; };
 		5E2D59BC19C0426600ECFD49 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D59BB19C0426600ECFD49 /* UIColor+Extension.m */; };
 		5E2D59C119C0463F00ECFD49 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D59C019C0463F00ECFD49 /* UIView+AnimationOptionsForCurve.m */; };
 		5E2D59C819C0590400ECFD49 /* CustomNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D59C719C0590400ECFD49 /* CustomNavigationViewController.m */; };
@@ -73,6 +71,12 @@
 		5E309FAE19F5048200D731A9 /* AutoLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E309FAC19F5048200D731A9 /* AutoLayoutViewController.m */; };
 		5E309FAF19F5048200D731A9 /* AutoLayoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E309FAD19F5048200D731A9 /* AutoLayoutViewController.xib */; };
 		5E309FB119F50C8400D731A9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E309FB019F50C8400D731A9 /* MainStoryboard.storyboard */; };
+		5E45487D1A245F0E00F66126 /* HPGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E45487A1A245F0E00F66126 /* HPGrowingTextView.m */; };
+		5E45487E1A245F0E00F66126 /* HPTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E45487C1A245F0E00F66126 /* HPTextViewInternal.m */; };
+		5E5983711A25832E0093C998 /* BaseFlowInputToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5983701A25832E0093C998 /* BaseFlowInputToolView.m */; };
+		5E5983761A25BF790093C998 /* BaseFlowTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5983751A25BF790093C998 /* BaseFlowTagsView.m */; };
+		5E59837A1A25DA870093C998 /* bubble_text_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5983781A25DA870093C998 /* bubble_text_1@2x.png */; };
+		5E59837B1A25DA870093C998 /* bubble_text_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5983791A25DA870093C998 /* bubble_text_2@2x.png */; };
 		5E5A66DE1A1215D000EF6939 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A66DD1A1215D000EF6939 /* HomePageViewController.m */; };
 		5E70EA8819C42714004E2F38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E70EA8419C42714004E2F38 /* AppDelegate.m */; };
 		5E70EA8919C42714004E2F38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E70EA8519C42714004E2F38 /* main.m */; };
@@ -83,14 +87,15 @@
 		5EAC9D7B19F8B3AA00A2CF47 /* TestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC9D7919F8B3AA00A2CF47 /* TestTableViewCell.m */; };
 		5EAC9D7C19F8B3AA00A2CF47 /* TestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC9D7A19F8B3AA00A2CF47 /* TestTableViewCell.xib */; };
 		5EAC9DA119F91E2700A2CF47 /* PictureFlowPresentTemp.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC9DA019F91E2700A2CF47 /* PictureFlowPresentTemp.m */; };
+		5EC9E1271A24C6E0001A588A /* SZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E1261A24C6E0001A588A /* SZTextView.m */; };
 		5EF45AE31A146A03000F73FD /* USFlagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF45AE21A146A03000F73FD /* USFlagView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5E0FE8AC1A1D9BCF0071E015 /* OneFingerLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneFingerLayoutViewController.h; sourceTree = "<group>"; };
 		5E0FE8AD1A1D9BCF0071E015 /* OneFingerLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneFingerLayoutViewController.m; sourceTree = "<group>"; };
-		5E0FE8B01A1D9CB60071E015 /* BaseFlowTextInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFlowTextInputView.h; sourceTree = "<group>"; };
-		5E0FE8B11A1D9CB60071E015 /* BaseFlowTextInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFlowTextInputView.m; sourceTree = "<group>"; };
+		5E0FE8B01A1D9CB60071E015 /* BaseFlowTextBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFlowTextBubbleView.h; sourceTree = "<group>"; };
+		5E0FE8B11A1D9CB60071E015 /* BaseFlowTextBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFlowTextBubbleView.m; sourceTree = "<group>"; };
 		5E0FE8B31A1D9F0B0071E015 /* CLTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTextLabel.h; sourceTree = "<group>"; };
 		5E0FE8B41A1D9F0B0071E015 /* CLTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTextLabel.m; sourceTree = "<group>"; };
 		5E0FE8B61A1D9F460071E015 /* CLCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCircleView.h; sourceTree = "<group>"; };
@@ -111,10 +116,6 @@
 		5E2D59AD19C0372A00ECFD49 /* ChatInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInputView.m; sourceTree = "<group>"; };
 		5E2D59AF19C0376500ECFD49 /* ChatTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextView.h; sourceTree = "<group>"; };
 		5E2D59B019C0376500ECFD49 /* ChatTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextView.m; sourceTree = "<group>"; };
-		5E2D59B219C03D3C00ECFD49 /* HPGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGrowingTextView.h; sourceTree = "<group>"; };
-		5E2D59B319C03D3C00ECFD49 /* HPGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGrowingTextView.m; sourceTree = "<group>"; };
-		5E2D59B419C03D3C00ECFD49 /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTextViewInternal.h; sourceTree = "<group>"; };
-		5E2D59B519C03D3C00ECFD49 /* HPTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPTextViewInternal.m; sourceTree = "<group>"; };
 		5E2D59BA19C0426600ECFD49 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
 		5E2D59BB19C0426600ECFD49 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
 		5E2D59BE19C0434B00ECFD49 /* AppMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppMacro.h; sourceTree = "<group>"; };
@@ -200,6 +201,16 @@
 		5E309FAC19F5048200D731A9 /* AutoLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutViewController.m; sourceTree = "<group>"; };
 		5E309FAD19F5048200D731A9 /* AutoLayoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoLayoutViewController.xib; sourceTree = "<group>"; };
 		5E309FB019F50C8400D731A9 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		5E4548791A245F0E00F66126 /* HPGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGrowingTextView.h; sourceTree = "<group>"; };
+		5E45487A1A245F0E00F66126 /* HPGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGrowingTextView.m; sourceTree = "<group>"; };
+		5E45487B1A245F0E00F66126 /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTextViewInternal.h; sourceTree = "<group>"; };
+		5E45487C1A245F0E00F66126 /* HPTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPTextViewInternal.m; sourceTree = "<group>"; };
+		5E59836F1A25832E0093C998 /* BaseFlowInputToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFlowInputToolView.h; sourceTree = "<group>"; };
+		5E5983701A25832E0093C998 /* BaseFlowInputToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFlowInputToolView.m; sourceTree = "<group>"; };
+		5E5983741A25BF790093C998 /* BaseFlowTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFlowTagsView.h; sourceTree = "<group>"; };
+		5E5983751A25BF790093C998 /* BaseFlowTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFlowTagsView.m; sourceTree = "<group>"; };
+		5E5983781A25DA870093C998 /* bubble_text_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_text_1@2x.png"; sourceTree = "<group>"; };
+		5E5983791A25DA870093C998 /* bubble_text_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_text_2@2x.png"; sourceTree = "<group>"; };
 		5E5A66DC1A1215D000EF6939 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		5E5A66DD1A1215D000EF6939 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		5E70EA8319C42714004E2F38 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -218,6 +229,8 @@
 		5EAC9D7A19F8B3AA00A2CF47 /* TestTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestTableViewCell.xib; sourceTree = "<group>"; };
 		5EAC9D9F19F91E2700A2CF47 /* PictureFlowPresentTemp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureFlowPresentTemp.h; sourceTree = "<group>"; };
 		5EAC9DA019F91E2700A2CF47 /* PictureFlowPresentTemp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureFlowPresentTemp.m; sourceTree = "<group>"; };
+		5EC9E1251A24C6E0001A588A /* SZTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTextView.h; sourceTree = "<group>"; };
+		5EC9E1261A24C6E0001A588A /* SZTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTextView.m; sourceTree = "<group>"; };
 		5EF45AE11A146A03000F73FD /* USFlagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USFlagView.h; sourceTree = "<group>"; };
 		5EF45AE21A146A03000F73FD /* USFlagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USFlagView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,12 +266,16 @@
 		5E0FE8AF1A1D9C760071E015 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				5E5983741A25BF790093C998 /* BaseFlowTagsView.h */,
+				5E5983751A25BF790093C998 /* BaseFlowTagsView.m */,
 				5E0FE8B61A1D9F460071E015 /* CLCircleView.h */,
 				5E0FE8B71A1D9F460071E015 /* CLCircleView.m */,
 				5E0FE8B31A1D9F0B0071E015 /* CLTextLabel.h */,
 				5E0FE8B41A1D9F0B0071E015 /* CLTextLabel.m */,
-				5E0FE8B01A1D9CB60071E015 /* BaseFlowTextInputView.h */,
-				5E0FE8B11A1D9CB60071E015 /* BaseFlowTextInputView.m */,
+				5E0FE8B01A1D9CB60071E015 /* BaseFlowTextBubbleView.h */,
+				5E0FE8B11A1D9CB60071E015 /* BaseFlowTextBubbleView.m */,
+				5E59836F1A25832E0093C998 /* BaseFlowInputToolView.h */,
+				5E5983701A25832E0093C998 /* BaseFlowInputToolView.m */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -333,24 +350,14 @@
 		5E2D59A319C02B6E00ECFD49 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				5EC9E1241A24C6E0001A588A /* SZTextView */,
+				5E4548781A245F0E00F66126 /* HPGrowingTextView */,
 				5E1A5E241A130C3C006A79C8 /* HMSegmentedControl */,
 				5E2D5A4C19C1A6C700ECFD49 /* XMPPCoreDataStorage */,
 				5E2D5A0E19C15EAF00ECFD49 /* AFNetworking */,
 				5E2D59DA19C05BDB00ECFD49 /* MBProgressHUD */,
-				5E2D59A419C02B6E00ECFD49 /* HPGrowingTextView */,
 			);
 			path = Lib;
-			sourceTree = "<group>";
-		};
-		5E2D59A419C02B6E00ECFD49 /* HPGrowingTextView */ = {
-			isa = PBXGroup;
-			children = (
-				5E2D59B219C03D3C00ECFD49 /* HPGrowingTextView.h */,
-				5E2D59B319C03D3C00ECFD49 /* HPGrowingTextView.m */,
-				5E2D59B419C03D3C00ECFD49 /* HPTextViewInternal.h */,
-				5E2D59B519C03D3C00ECFD49 /* HPTextViewInternal.m */,
-			);
-			path = HPGrowingTextView;
 			sourceTree = "<group>";
 		};
 		5E2D59AB19C02D0E00ECFD49 /* SubViews */ = {
@@ -451,6 +458,7 @@
 		5E2D59C919C05A0000ECFD49 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				5E5983771A25DA870093C998 /* BubbleText */,
 				5E2D59E719C06A5E00ECFD49 /* Chat */,
 				5E2D59CA19C05A0F00ECFD49 /* Common */,
 			);
@@ -606,6 +614,26 @@
 			path = AutoLayout;
 			sourceTree = "<group>";
 		};
+		5E4548781A245F0E00F66126 /* HPGrowingTextView */ = {
+			isa = PBXGroup;
+			children = (
+				5E4548791A245F0E00F66126 /* HPGrowingTextView.h */,
+				5E45487A1A245F0E00F66126 /* HPGrowingTextView.m */,
+				5E45487B1A245F0E00F66126 /* HPTextViewInternal.h */,
+				5E45487C1A245F0E00F66126 /* HPTextViewInternal.m */,
+			);
+			path = HPGrowingTextView;
+			sourceTree = "<group>";
+		};
+		5E5983771A25DA870093C998 /* BubbleText */ = {
+			isa = PBXGroup;
+			children = (
+				5E5983781A25DA870093C998 /* bubble_text_1@2x.png */,
+				5E5983791A25DA870093C998 /* bubble_text_2@2x.png */,
+			);
+			path = BubbleText;
+			sourceTree = "<group>";
+		};
 		5E5A66DB1A12107900EF6939 /* HomePageLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -658,6 +686,15 @@
 				5EAC9DA019F91E2700A2CF47 /* PictureFlowPresentTemp.m */,
 			);
 			path = Temp;
+			sourceTree = "<group>";
+		};
+		5EC9E1241A24C6E0001A588A /* SZTextView */ = {
+			isa = PBXGroup;
+			children = (
+				5EC9E1251A24C6E0001A588A /* SZTextView.h */,
+				5EC9E1261A24C6E0001A588A /* SZTextView.m */,
+			);
+			path = SZTextView;
 			sourceTree = "<group>";
 		};
 		5EF45ADF1A135E22000F73FD /* SubViews */ = {
@@ -726,6 +763,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E59837B1A25DA870093C998 /* bubble_text_2@2x.png in Resources */,
 				5E2D59FB19C0912500ECFD49 /* chat_input_bg@2x.png in Resources */,
 				5E2D5A6519C326C900ECFD49 /* chat_protrait_default1@2x.png in Resources */,
 				5E2D597719C0226900ECFD49 /* InfoPlist.strings in Resources */,
@@ -737,6 +775,7 @@
 				5E2D59F119C06A5E00ECFD49 /* chat_emojiX@2x.png in Resources */,
 				5E2D598219C0226900ECFD49 /* Images.xcassets in Resources */,
 				5E2D59E619C05D6600ECFD49 /* ChatTextCell.xib in Resources */,
+				5E59837A1A25DA870093C998 /* bubble_text_1@2x.png in Resources */,
 				5E2D5A0919C156BC00ECFD49 /* FunLoadingView.xib in Resources */,
 				5E2D5A0C19C15AAF00ECFD49 /* fun_loading_bg@2x.png in Resources */,
 				5E2D59F019C06A5E00ECFD49 /* chat_emoji@2x.png in Resources */,
@@ -759,8 +798,10 @@
 			files = (
 				5E2D5A5319C1C85F00ECFD49 /* ChatContentMessageEntity.m in Sources */,
 				5EAC9D7B19F8B3AA00A2CF47 /* TestTableViewCell.m in Sources */,
+				5E45487D1A245F0E00F66126 /* HPGrowingTextView.m in Sources */,
 				5E2D59B119C0376500ECFD49 /* ChatTextView.m in Sources */,
 				5E2D59D219C05B6E00ECFD49 /* BaseViewController.m in Sources */,
+				5EC9E1271A24C6E0001A588A /* SZTextView.m in Sources */,
 				5E309FAE19F5048200D731A9 /* AutoLayoutViewController.m in Sources */,
 				5E0FE8B81A1D9F460071E015 /* CLCircleView.m in Sources */,
 				5E1A5E271A130C3C006A79C8 /* HMSegmentedControl.m in Sources */,
@@ -770,21 +811,22 @@
 				5EAC9DA119F91E2700A2CF47 /* PictureFlowPresentTemp.m in Sources */,
 				5E2D5A5019C1A6C700ECFD49 /* XMPPCoreDataStorage.m in Sources */,
 				5E2D5A2219C15EAF00ECFD49 /* AFHTTPRequestOperation.m in Sources */,
+				5E45487E1A245F0E00F66126 /* HPTextViewInternal.m in Sources */,
 				5E2D5A6019C2FAD600ECFD49 /* NSDate+TransformTool.m in Sources */,
 				5E2D59C819C0590400ECFD49 /* CustomNavigationViewController.m in Sources */,
 				5E2D5A3A19C170C400ECFD49 /* NetworkCenter.m in Sources */,
 				5E2D59E519C05D6600ECFD49 /* ChatTextCell.m in Sources */,
-				5E2D59B619C03D3C00ECFD49 /* HPGrowingTextView.m in Sources */,
 				5E2D59D919C05BAC00ECFD49 /* LoadingViewManager.m in Sources */,
 				5E2D5A0819C156BC00ECFD49 /* FunLoadingView.m in Sources */,
 				5E2D59DD19C05BDB00ECFD49 /* MBProgressHUD.m in Sources */,
 				5EF45AE31A146A03000F73FD /* USFlagView.m in Sources */,
 				5E0FE8AE1A1D9BCF0071E015 /* OneFingerLayoutViewController.m in Sources */,
 				5E2D5A2419C15EAF00ECFD49 /* AFHTTPSessionManager.m in Sources */,
+				5E5983761A25BF790093C998 /* BaseFlowTagsView.m in Sources */,
 				5EAC1D4C1A1DE1AA0074DC99 /* UIView+Frame.m in Sources */,
 				5EAC9D7619F8B23600A2CF47 /* PictureFlowViewController.m in Sources */,
 				5E2D5A3D19C1714000ECFD49 /* HTTPRequestManager.m in Sources */,
-				5E0FE8B21A1D9CB60071E015 /* BaseFlowTextInputView.m in Sources */,
+				5E0FE8B21A1D9CB60071E015 /* BaseFlowTextBubbleView.m in Sources */,
 				5E2D59BC19C0426600ECFD49 /* UIColor+Extension.m in Sources */,
 				5E2D59D519C05B8E00ECFD49 /* UIViewController+NavigationBarItemFlexiable.m in Sources */,
 				5E70EA8919C42714004E2F38 /* main.m in Sources */,
@@ -796,9 +838,9 @@
 				5E2D5A5619C299B700ECFD49 /* ChatMessageUtil.m in Sources */,
 				5E2D5A2A19C15EAF00ECFD49 /* AFURLSessionManager.m in Sources */,
 				5E2D5A2919C15EAF00ECFD49 /* AFURLResponseSerialization.m in Sources */,
+				5E5983711A25832E0093C998 /* BaseFlowInputToolView.m in Sources */,
 				5E5A66DE1A1215D000EF6939 /* HomePageViewController.m in Sources */,
 				5E2D5A2F19C16FF300ECFD49 /* CommonFunc.m in Sources */,
-				5E2D59B719C03D3C00ECFD49 /* HPTextViewInternal.m in Sources */,
 				5E2D5A5D19C2D9AE00ECFD49 /* NSObject+transformStringValue.m in Sources */,
 				5E2D5A4B19C1A67F00ECFD49 /* ChatMessageCoreDataStorage.m in Sources */,
 				5E2D59C119C0463F00ECFD49 /* UIView+AnimationOptionsForCurve.m in Sources */,

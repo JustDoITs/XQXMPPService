@@ -63,31 +63,31 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8I0-F1-MNe" customClass="USFlagView">
-                    <rect key="frame" x="8" y="154" width="304" height="200"/>
+                    <rect key="frame" x="0.0" y="154" width="320" height="200"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="200" id="FUj-r2-a3D"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="304" id="rJc-Vm-5m5"/>
+                        <constraint firstAttribute="height" constant="200" id="AbK-w4-1k2"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="MIJ-nc-lNh"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="u2f-Ai-y4t" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="46" id="0pi-vI-y7l"/>
+                <constraint firstAttribute="bottom" secondItem="8I0-F1-MNe" secondAttribute="bottom" constant="214" id="4Vk-jq-u5A"/>
+                <constraint firstAttribute="trailing" secondItem="8I0-F1-MNe" secondAttribute="trailing" id="6Xv-I5-TLo"/>
                 <constraint firstItem="Kfa-1k-8e4" firstAttribute="width" secondItem="5Dk-Pd-Gp5" secondAttribute="width" id="7UU-Xh-NFf"/>
                 <constraint firstItem="Ne4-sZ-8ug" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="u2f-Ai-y4t" secondAttribute="trailing" id="Dvg-S4-b5I"/>
                 <constraint firstItem="Kfa-1k-8e4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="81" id="ERg-Ee-QTm"/>
                 <constraint firstItem="E69-JR-P8s" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="46" id="LBe-vQ-v43"/>
                 <constraint firstItem="u2f-Ai-y4t" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Kfa-1k-8e4" secondAttribute="trailing" priority="999" id="Lar-86-cx3"/>
-                <constraint firstItem="8I0-F1-MNe" firstAttribute="top" secondItem="E69-JR-P8s" secondAttribute="bottom" constant="8" id="SRL-iQ-mhY"/>
                 <constraint firstItem="Ne4-sZ-8ug" firstAttribute="width" secondItem="5Dk-Pd-Gp5" secondAttribute="width" id="UYa-1f-uH4"/>
-                <constraint firstItem="8I0-F1-MNe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="W5F-Sq-Su9"/>
                 <constraint firstItem="E69-JR-P8s" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5Dk-Pd-Gp5" secondAttribute="trailing" id="di7-DS-fXw"/>
                 <constraint firstItem="5Dk-Pd-Gp5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hLa-Ll-yGp"/>
                 <constraint firstItem="Ne4-sZ-8ug" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="81" id="i2E-qo-TTh"/>
                 <constraint firstItem="Kfa-1k-8e4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="E69-JR-P8s" secondAttribute="trailing" priority="999" id="sZd-d6-jFo"/>
                 <constraint firstAttribute="trailing" secondItem="Ne4-sZ-8ug" secondAttribute="trailing" id="tRM-0v-JSb"/>
-                <constraint firstAttribute="trailing" secondItem="8I0-F1-MNe" secondAttribute="trailing" constant="8" id="vI1-1y-rcn"/>
+                <constraint firstItem="8I0-F1-MNe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="u2p-uP-BvL"/>
                 <constraint firstItem="5Dk-Pd-Gp5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="81" id="zRG-2H-ILW"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

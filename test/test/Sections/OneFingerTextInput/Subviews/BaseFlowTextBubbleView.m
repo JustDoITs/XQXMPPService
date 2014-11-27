@@ -6,18 +6,26 @@
 //
 //
 
-#import "BaseFlowTextInputView.h"
+#import "BaseFlowTextBubbleView.h"
 #import "CLTextLabel.h"
 #import "CLCircleView.h"
 #import "UIView+Frame.h"
 
+const CGFloat MAX_FONT_SIZE = 50.0;
+const CGFloat MIN_FONT_SIZE = 11.0;
+
+const CGFloat kControlSide = 30;
+
+const NSString *defaultTextString = @"双击进行编辑";
+
 static NSString* const CLTextViewActiveViewDidChangeNotification = @"CLTextViewActiveViewDidChangeNotificationString";
 static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActiveViewDidTapNotificationString";
 
-@interface BaseFlowTextInputView ()
+@interface BaseFlowTextBubbleView ()
 {
     CLTextLabel *_label;
     UIButton *_deleteButton;
+    UIButton *_editeButton;
     CLCircleView *_circleView;
     
     CGFloat _scale;
@@ -28,6 +36,8 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
     CGFloat _initialScale;
 }
 
+@property (nonatomic, strong) UIImageView   *bubbleBgImageView;
+
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) UIFont *font;
 @property (nonatomic, strong) UIColor *fillColor;
@@ -35,9 +45,12 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
 @property (nonatomic, assign) CGFloat borderWidth;
 @property (nonatomic, assign) NSTextAlignment textAlignment;
 
+@property (nonatomic, assign) CGSize  orignSize;
+@property (nonatomic, assign) CGSize  controlLimitSize; //setup maxWidth and minHeight
+
 @end
 
-@implementation BaseFlowTextInputView
+@implementation BaseFlowTextBubbleView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -48,9 +61,9 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
     return self;
 }
 
-+ (void)setActiveTextView:(BaseFlowTextInputView*)view
++ (void)setActiveTextView:(BaseFlowTextBubbleView*)view
 {
-    static BaseFlowTextInputView *activeView = nil;
+    static BaseFlowTextBubbleView *activeView = nil;
     if(view != activeView){
         [activeView setAvtive:NO];
         activeView = view;
@@ -65,33 +78,57 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
 
 - (id)init
 {
-    self = [super initWithFrame:CGRectMake(0, 0, 132, 132)];
+    self = [super initWithFrame:CGRectMake(0, 0, 100+kControlSide, 100+kControlSide)];
     if(self){
+        self.orignSize = CGSizeZero;
+        self.controlLimitSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width, kControlSide+2);
+        
+        self.bubbleBgImageView = [[UIImageView alloc] initWithFrame:self.frame];
+        [self.bubbleBgImageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
+        UIImage *bgImage = [[UIImage imageNamed:@"bubble_text_1"] resizableImageWithCapInsets:UIEdgeInsetsMake(32, 14, 14, 8)];
+        [self.bubbleBgImageView setImage:bgImage];
+        [self addSubview:self.bubbleBgImageView];
+        [self sendSubviewToBack:self.bubbleBgImageView];
+        
         _label = [[CLTextLabel alloc] init];
         [_label setTextColor:[UIColor blackColor]];
         _label.numberOfLines = 0;
-        _label.backgroundColor = [UIColor clearColor];
-        _label.layer.borderColor = [[UIColor blackColor] CGColor];
+        _label.backgroundColor = [UIColor colorWithRed:0.874 green:0.291 blue:0.291 alpha:0.700];
+        _label.layer.borderColor = [[UIColor colorWithRed:0.948 green:0.224 blue:0.816 alpha:1.000] CGColor];
         _label.layer.cornerRadius = 3;
-        _label.font = [UIFont systemFontOfSize:200];
-        _label.minimumScaleFactor = 1/200.0;
+        _label.font = [UIFont systemFontOfSize:MAX_FONT_SIZE];
+        _label.minimumScaleFactor = 1/MAX_FONT_SIZE;
         _label.adjustsFontSizeToFitWidth = YES;
         _label.textAlignment = NSTextAlignmentCenter;
         self.text = @"";
         [self addSubview:_label];
         
-        CGSize size = [_label sizeThatFits:CGSizeMake(FLT_MAX, FLT_MAX)];
-        _label.frame = CGRectMake(16, 16, size.width, size.height);
-        self.frame = CGRectMake(0, 0, size.width + 32, size.height + 32);
+        CGRect r = [[UIScreen mainScreen] bounds];
+        CGSize size = [_label sizeThatFits:CGSizeMake(r.size.width - kControlSide, FLT_MAX)];
+        _label.frame = CGRectMake(kControlSide/2, kControlSide/2, size.width, size.height);
+        self.orignSize = size;
+        self.frame = CGRectMake(0, 0, size.width + kControlSide, size.height + kControlSide);
         
         _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_deleteButton setImage:[UIImage imageNamed:@"btn_delete"] forState:UIControlStateNormal];
-        _deleteButton.frame = CGRectMake(0, 0, 32, 32);
+        _deleteButton.frame = CGRectMake(0, 0, kControlSide, kControlSide);
         _deleteButton.center = _label.frame.origin;
         [_deleteButton addTarget:self action:@selector(pushedDeleteBtn:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_deleteButton];
         
-        _circleView = [[CLCircleView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+        _editeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_editeButton setTitle:@"✏️" forState:UIControlStateNormal];
+        [_editeButton setFrame:CGRectMake(0, 0, kControlSide, kControlSide)];
+        _editeButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        [_editeButton setCenter:CGPointMake(_label.right, _label.frame.origin.y)];
+        [_editeButton addTarget:self action:@selector(responseToEditeButton:) forControlEvents:UIControlEventTouchUpInside];
+        [_editeButton.layer setBorderWidth:1];
+        [_editeButton.layer setCornerRadius:kControlSide/2];
+        [_editeButton.layer setMasksToBounds:YES];
+        [_editeButton.layer setBorderColor:[UIColor blackColor].CGColor];
+        [self addSubview:_editeButton];
+        
+        _circleView = [[CLCircleView alloc] initWithFrame:CGRectMake(0, 0, kControlSide, kControlSide)];
         _circleView.center = CGPointMake(_label.width + _label.left, _label.height + _label.top);
         _circleView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
         _circleView.radius = 0.7;
@@ -105,6 +142,7 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
         
         [self initGestures];
     }
+    
     return self;
 }
 
@@ -125,22 +163,12 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
     return view;
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-}
-
-- (void)layoutIfNeeded
-{
-    [super layoutIfNeeded];
-//    [self sizeToFitWithMaxWidth:self.superview.width lineHeight:self.superview.height *0.2];
-}
-
 #pragma mark- Properties
 
 - (void)setAvtive:(BOOL)active
 {
     _deleteButton.hidden = !active;
+    _editeButton.hidden = !active;
     _circleView.hidden = !active;
     _label.layer.borderWidth = (active) ? 1/_scale : 0;
 }
@@ -152,25 +180,22 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
 
 - (void)sizeToFitWithMaxWidth:(CGFloat)width lineHeight:(CGFloat)lineHeight
 {
-    double diff1 = [[NSDate date] timeIntervalSince1970];
     self.transform = CGAffineTransformIdentity;
     _label.transform = CGAffineTransformIdentity;
     
-    CGSize size = [_label sizeThatFits:CGSizeMake(width / (15/200.0), FLT_MAX)];
-    _label.frame = CGRectMake(16, 16, size.width, size.height);
+    CGSize size = [_label sizeThatFits:CGSizeMake(width / (MIN_FONT_SIZE/MAX_FONT_SIZE), FLT_MAX)];
+    _label.frame = CGRectMake(kControlSide/2, kControlSide/2, size.width, size.height);
     
-    CGFloat viewW = (_label.width + 32);
+    CGFloat viewW = (_label.width + kControlSide);
     CGFloat viewH = _label.font.lineHeight;
     
     CGFloat ratio = MIN(width / viewW, lineHeight / viewH);
     
-    NSLog(@"%lf          method one",diff1 - [[NSDate date] timeIntervalSince1970]);
     [self setScale:ratio];
 }
 
 - (void)setScale:(CGFloat)scale
 {
-    double diff1 = [[NSDate date] timeIntervalSince1970];
     _scale = scale;
     
     self.transform = CGAffineTransformIdentity;
@@ -178,10 +203,10 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
     _label.transform = CGAffineTransformMakeScale(_scale, _scale);
     
     CGRect rct = self.frame;
-    rct.origin.x += (rct.size.width - (_label.width + 32)) / 2;
-    rct.origin.y += (rct.size.height - (_label.height + 32)) / 2;
-    rct.size.width  = _label.width + 32;
-    rct.size.height = _label.height + 32;
+    rct.origin.x += (rct.size.width - (_label.width + kControlSide)) / 2;
+    rct.origin.y += (rct.size.height - (_label.height + kControlSide)) / 2;
+    rct.size.width  = _label.width + kControlSide;
+    rct.size.height = _label.height + kControlSide;
     self.frame = rct;
     
     _label.center = CGPointMake(rct.size.width/2, rct.size.height/2);
@@ -190,8 +215,6 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
     
     _label.layer.borderWidth = 1/_scale;
     _label.layer.cornerRadius = 3/_scale;
-    
-    NSLog(@"%lf---------method two",diff1 - [[NSDate date] timeIntervalSince1970]);
 }
 
 - (void)setFillColor:(UIColor *)fillColor
@@ -226,7 +249,7 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
 
 - (void)setFont:(UIFont *)font
 {
-    _label.font = [font fontWithSize:200];
+    _label.font = [font fontWithSize:MAX_FONT_SIZE];
 }
 
 - (UIFont*)font
@@ -248,7 +271,7 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
 {
     if(![text isEqualToString:_text]){
         _text = text;
-        _label.text = (_text.length>0) ? _text : @"NO\nNO\n✋\n☀️";
+        _label.text = (_text.length>0) ? _text : defaultTextString;
     }
 }
 
@@ -256,14 +279,14 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
 
 - (void)pushedDeleteBtn:(id)sender
 {
-    BaseFlowTextInputView *nextTarget = nil;
+    BaseFlowTextBubbleView *nextTarget = nil;
     
     const NSInteger index = [self.superview.subviews indexOfObject:self];
     
     for(NSInteger i=index+1; i<self.superview.subviews.count; ++i){
         UIView *view = [self.superview.subviews objectAtIndex:i];
-        if([view isKindOfClass:[BaseFlowTextInputView class]]){
-            nextTarget = (BaseFlowTextInputView*)view;
+        if([view isKindOfClass:[BaseFlowTextBubbleView class]]){
+            nextTarget = (BaseFlowTextBubbleView*)view;
             break;
         }
     }
@@ -271,8 +294,8 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
     if(nextTarget==nil){
         for(NSInteger i=index-1; i>=0; --i){
             UIView *view = [self.superview.subviews objectAtIndex:i];
-            if([view isKindOfClass:[BaseFlowTextInputView class]]){
-                nextTarget = (BaseFlowTextInputView*)view;
+            if([view isKindOfClass:[BaseFlowTextBubbleView class]]){
+                nextTarget = (BaseFlowTextBubbleView*)view;
                 break;
             }
         }
@@ -280,6 +303,11 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
     
     [[self class] setActiveTextView:nextTarget];
     [self removeFromSuperview];
+}
+
+- (void)responseToEditeButton:(UIButton *)button
+{
+    //response edite Button
 }
 
 - (void)viewDidTap:(UITapGestureRecognizer*)sender
@@ -305,13 +333,19 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
 
 - (void)circleViewDidPan:(UIPanGestureRecognizer*)sender
 {
-    CGPoint p = [sender translationInView:self.superview];
+    if (sender.state == UIGestureRecognizerStateCancelled ||
+        sender.state == UIGestureRecognizerStateEnded ||
+        sender.state == UIGestureRecognizerStateFailed ||
+        sender.state == UIGestureRecognizerStatePossible) {
+        return;
+    }
+    
+    CGPoint pSuper = [sender translationInView:self.superview];
     
     static CGFloat tmpR = 1;
     static CGFloat tmpA = 0;
     if(sender.state == UIGestureRecognizerStateBegan){
         _initialPoint = [self.superview convertPoint:_circleView.center fromView:_circleView.superview];
-        
         CGPoint p = CGPointMake(_initialPoint.x - self.center.x, _initialPoint.y - self.center.y);
         tmpR = sqrt(p.x*p.x + p.y*p.y);
         tmpA = atan2(p.y, p.x);
@@ -320,12 +354,16 @@ static NSString* const CLTextViewActiveViewDidTapNotification = @"CLTextViewActi
         _initialScale = _scale;
     }
     
-    p = CGPointMake(_initialPoint.x + p.x - self.center.x, _initialPoint.y + p.y - self.center.y);
-    CGFloat R = sqrt(p.x*p.x + p.y*p.y);
-    CGFloat arg = atan2(p.y, p.x);
-    
-    _arg   = _initialArg + arg - tmpA;
-    [self setScale:MAX(_initialScale * R / tmpR, 15/200.0)];
+    if (sender.state == UIGestureRecognizerStateChanged) {
+        pSuper = CGPointMake(_initialPoint.x + pSuper.x - self.center.x, _initialPoint.y + pSuper.y - self.center.y);
+        CGFloat R = sqrt(pSuper.x*pSuper.x + pSuper.y*pSuper.y);
+        CGFloat arg = atan2(pSuper.y, pSuper.x);
+        
+        _arg   = _initialArg + arg - tmpA;
+        CGFloat maxLimitScale = MIN(_initialScale * R / tmpR, self.controlLimitSize.width / self.orignSize.width);
+        CGFloat minLimitScale = MAX(maxLimitScale, self.controlLimitSize.height / self.orignSize.height);
+        [self setScale:minLimitScale];
+    }
 }
 
 @end

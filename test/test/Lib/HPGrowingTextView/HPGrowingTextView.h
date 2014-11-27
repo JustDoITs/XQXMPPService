@@ -36,7 +36,7 @@
 @class HPGrowingTextView;
 @class HPTextViewInternal;
 
-@protocol HPGrowingTextViewDelegate <NSObject>
+@protocol HPGrowingTextViewDelegate
 
 @optional
 - (BOOL)growingTextViewShouldBeginEditing:(HPGrowingTextView *)growingTextView;
@@ -55,9 +55,8 @@
 - (BOOL)growingTextViewShouldReturn:(HPGrowingTextView *)growingTextView;
 @end
 
-@interface HPGrowingTextView : UIView <UITextViewDelegate>
-{
-	HPTextViewInternal *internalTextView;
+@interface HPGrowingTextView : UIView <UITextViewDelegate> {
+	HPTextViewInternal *internalTextView;	
 	
 	int minHeight;
 	int maxHeight;
@@ -70,6 +69,7 @@
     NSTimeInterval animationDuration;
 	
 	//uitextview properties
+	NSObject <HPGrowingTextViewDelegate> *__unsafe_unretained delegate;
 	NSTextAlignment textAlignment;
 	NSRange selectedRange;
 	BOOL editable;
@@ -93,7 +93,7 @@
 
 
 //uitextview properties
-@property(nonatomic, weak) id<HPGrowingTextViewDelegate> delegate;
+@property(unsafe_unretained) NSObject<HPGrowingTextViewDelegate> *delegate;
 @property(nonatomic,strong) NSString *text;
 @property(nonatomic,strong) UIFont *font;
 @property(nonatomic,strong) UIColor *textColor;
@@ -106,6 +106,10 @@
 @property (assign) UIEdgeInsets contentInset;
 @property (nonatomic) BOOL isScrollable;
 @property(nonatomic) BOOL enablesReturnKeyAutomatically;
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+- (id)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer;
+#endif
 
 //uitextview methods
 //need others? use .internalTextView
